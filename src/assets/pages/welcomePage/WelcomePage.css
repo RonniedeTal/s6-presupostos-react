@@ -1,0 +1,19 @@
+.introducing{
+    
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        text-align: center;
+      
+}
+@keyframes fadeInOut {
+    0% { opacity: 0; }
+    25% { opacity: 1; }
+    100% { opacity: 0; }
+  }
+  
+ h1 {
+    animation: fadeInOut 2.5s ease-in-out infinite;
+  }
