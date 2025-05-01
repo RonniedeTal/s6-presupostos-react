@@ -8,7 +8,7 @@ function WelcomePage() {
         
         <h1>Welcome to budgets</h1>
 
-    <Link to={'/home'}><button type="button" className="btn btn-success">go to budgets</button> </Link>
+    <Link to={'/home'}><button type="button" className="btn-welcome m-5">go to budgets!!!</button> </Link>
     </div>
   )
 }

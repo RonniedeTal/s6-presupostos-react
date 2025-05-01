@@ -17,3 +17,15 @@
  h1 {
     animation: fadeInOut 2.5s ease-in-out infinite;
   }
+  .btn-welcome{
+    background-color: rgb(120, 93, 200);
+    border-radius: 5px;
+    border: none;
+    color:white;
+    transition: transform 0.5s ease;
+   
+  }
+  .btn-welcome:hover{
+    transform:rotate(360deg) scale(1.5);
+   
+  }
