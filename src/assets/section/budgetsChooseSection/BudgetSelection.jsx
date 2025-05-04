@@ -7,14 +7,14 @@ import dataJson from "../../../Data.json"
 
 
 function BudgetSelection() {
-  const [data, setData]=useState([dataJson])
+  const [data, setData]=useState(dataJson)
 
 console.log(data);
 
 
   return (
     <div className="budget-selection ">
-      {dataJson.map((eachData)=>{
+      {data.map((eachData)=>{
       return (
          <CardComponent key={eachData.id} 
       h4Content={eachData.service}

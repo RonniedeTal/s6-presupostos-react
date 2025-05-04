@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import './CardComponent.css';
+import AddsComponent from '../adding-component/AddsComponent';
 
 
 function CardComponent(props) {
@@ -7,6 +8,7 @@ function CardComponent(props) {
   const [isAddContentShowing, setIsAddContentShowing]=useState(false)
   const [numPages, setNumPages ]=useState(1)
   const [numLanguages, setNumLanguages]=useState(1)
+  
 
   const handleCheckOnchange=(e)=>{
    
@@ -41,28 +43,23 @@ function CardComponent(props) {
           <p>{props.pContent}</p>
         </div>
         <h3 className="price">{props.priceContent}$</h3>
-        <span> <input type="checkbox" checked={check} name={props.h4Content} onChange={handleCheckOnchange} onClick={HandleShowing}/>Add</span>
-        {isAddContentShowing ? (
-  <div className='container'>
-    <div className="counter-row">
-      <span>Pages:</span>
-      <div className="counter-controls">
-        <button className="counter-button" onClick={handleDecrease}>➖</button>
-        <span className="counter-value">{numPages}</span>
-        <button className="counter-button" onClick={handleIncrease}>➕</button>
-      </div>
-    </div>
+<AddsComponent
+ check={check} 
+ setCheck={setCheck}
+ handleCheckOnchange={handleCheckOnchange} 
+ HandleShowing={HandleShowing}
+ handleIncrease={handleIncrease}
+ handleDecrease={handleDecrease}
+ handleLanguagesIncrease={handleLanguagesIncrease}
+ handleLanguagesDecrease={handleLanguagesDecrease}
+ numPages={numPages}
+ setNumPages={setNumPages}
+ numLanguages={numLanguages}
+ setNumLanguages={setNumLanguages}
+ isAddContentShowing={isAddContentShowing}
+ setIsAddContentShowing={setIsAddContentShowing}
 
-    <div className="counter-row">
-      <span>Languages:</span>
-      <div className="counter-controls">
-        <button className="counter-button" onClick={handleLanguagesDecrease}>➖</button>
-        <span className="counter-value">{numLanguages}</span>
-        <button className="counter-button" onClick={handleLanguagesIncrease}>➕</button>
-      </div>
-    </div>
-  </div>
-):null}
+ />
       </div>
     </div>
   );
