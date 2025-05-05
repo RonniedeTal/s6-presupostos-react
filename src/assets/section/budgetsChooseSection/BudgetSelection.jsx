@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, {  useState } from 'react';
 import './BudgetSelection.css';
 import CardComponent from '../../components/cardComponent/CardComponent';
 import dataJson from "../../../Data.json"
@@ -6,10 +6,20 @@ import dataJson from "../../../Data.json"
 
 
 
-function BudgetSelection() {
-  const [data, setData]=useState(dataJson)
 
-console.log(data);
+function BudgetSelection(props) {
+  const [data, setData]=useState(dataJson)
+  const [total, setTotal] = useState(0);
+
+const handleSelectionChange = (isChecked, unitPrice) => {
+  const totalPrice=unitPrice 
+  if (isChecked) {
+    setTotal(total+totalPrice);
+  } else {
+    setTotal(total-totalPrice);
+  }
+};
+ 
 
 
   return (
@@ -20,13 +30,18 @@ console.log(data);
       h4Content={eachData.service}
       pContent={eachData.content}
       priceContent={eachData.priceContent}
+      handleSelectionChange={handleSelectionChange}
+      
+     
     /> 
       )
       })}
+  
      
-     
-      <h4 className='total mt-5'>Total: </h4> 
+      <h4 className='total mt-5' >Total:{total}</h4> 
     </div>
+    
+   
   );
 }
 

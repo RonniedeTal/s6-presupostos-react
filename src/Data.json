@@ -3,7 +3,7 @@
         "id":1,
         "service":"Seo",
         "content":"Programing a complete responsive web",
-        "priceContent":"300",
+        "priceContent":300,
         "isPurchased":false
 
     },
@@ -11,14 +11,14 @@
         "id":2,
         "service":"Ads",
         "content":"Programing a complete responsive web",
-        "priceContent":"400",
+        "priceContent":400,
         "isPurchased":false
     },
     {
         "id":3,
         "service":"Web",
         "content":"Programing a complete responsive web",
-        "priceContent":"500",
+        "priceContent":500,
         "isPurchased":false
     }
 ]

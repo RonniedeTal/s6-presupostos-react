@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import './CardComponent.css';
 import AddsComponent from '../adding-component/AddsComponent';
+import BudgetSelection from '../../section/budgetsChooseSection/BudgetSelection';
+import PriceComponent from '../price-component/PriceComponent';
 
 
 function CardComponent(props) {
@@ -14,9 +16,12 @@ function CardComponent(props) {
    
     const isChecked = e.target.checked;
     setCheck(isChecked)
-    console.log(props.h4Content, isChecked, e.target); 
-
-  }
+    
+    const price = Number(props.priceContent);
+    if (props.handleSelectionChange) {
+      props.handleSelectionChange(isChecked, price);
+    }
+  };
 
   const HandleShowing=()=>{
     setIsAddContentShowing(!isAddContentShowing)
@@ -36,6 +41,7 @@ function CardComponent(props) {
   }
 
   return (
+   
     <div className="card w-50 mt-3 mx-auto shadow-lg">
       <div className="card-body inner-card">
         <div className="text-content">
@@ -60,8 +66,17 @@ function CardComponent(props) {
  setIsAddContentShowing={setIsAddContentShowing}
 
  />
+ {/* <BudgetSelection price={price}/> */}
+
       </div>
+
+    
+      
     </div>
+
+    
+    
+   
   );
 }
 
