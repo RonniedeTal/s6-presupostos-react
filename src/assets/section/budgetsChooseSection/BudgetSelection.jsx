@@ -9,17 +9,21 @@ import dataJson from "../../../Data.json"
 
 function BudgetSelection(props) {
   const [data, setData]=useState(dataJson)
-  const [total, setTotal] = useState(0);
+  const [total, setTotal]=useState(0);
+console.log(total);
 
-const handleSelectionChange = (isChecked, unitPrice) => {
-  const totalPrice=unitPrice 
-  if (isChecked) {
-    setTotal(total+totalPrice);
-  } else {
-    setTotal(total-totalPrice);
-  }
-};
- 
+  const addToTotal=(amount)=>{
+    setTotal(total+amount); 
+  };
+  
+  const handleSelectionChange=(isChecked, subTotal) => {
+    if (isChecked) {
+      setTotal(total+60+subTotal); 
+      
+    }else{
+      setTotal(total-subTotal)
+    }
+  };
 
 
   return (
@@ -31,6 +35,7 @@ const handleSelectionChange = (isChecked, unitPrice) => {
       pContent={eachData.content}
       priceContent={eachData.priceContent}
       handleSelectionChange={handleSelectionChange}
+      addToTotal={addToTotal}
       
      
     /> 

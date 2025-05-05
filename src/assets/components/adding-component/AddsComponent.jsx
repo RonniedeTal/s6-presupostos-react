@@ -3,7 +3,7 @@ import React from 'react'
 function AddsComponent(props) {
   return (
     <div>
-        <span> <input type="checkbox" checked={props.check}  onChange={props.handleCheckOnchange} onClick={props.HandleShowing} />Add</span>
+        <span> <input type="checkbox" checked={props.check} name={props.isPurchased} onChange={props.handleCheckOnchange} onClick={props.HandleShowing} value={props.priceContent}/>Add</span>
         {props.isAddContentShowing ? (
   <div className='container'>
     <div className="counter-row">

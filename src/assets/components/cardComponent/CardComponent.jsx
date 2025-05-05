@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import './CardComponent.css';
 import AddsComponent from '../adding-component/AddsComponent';
-import BudgetSelection from '../../section/budgetsChooseSection/BudgetSelection';
-import PriceComponent from '../price-component/PriceComponent';
+
+
 
 
 function CardComponent(props) {
@@ -10,15 +10,21 @@ function CardComponent(props) {
   const [isAddContentShowing, setIsAddContentShowing]=useState(false)
   const [numPages, setNumPages ]=useState(1)
   const [numLanguages, setNumLanguages]=useState(1)
+  // const [numPagesValue, setNumpagesValue]=useState(0)
+  // console.log(numPagesValue);
   
+
+  // const changingPagesValue=()=>{
+  //   setNumpagesValue(numPages*30)
+  // }
 
   const handleCheckOnchange=(e)=>{
    
-    const isChecked = e.target.checked;
+    const isChecked=e.target.checked;
     setCheck(isChecked)
     
     const price = Number(props.priceContent);
-    if (props.handleSelectionChange) {
+    if (props.handleSelectionChange){
       props.handleSelectionChange(isChecked, price);
     }
   };
@@ -27,19 +33,26 @@ function CardComponent(props) {
     setIsAddContentShowing(!isAddContentShowing)
   }
   const handleIncrease=()=>{
-    setNumPages(numPages+1)
-  }
-  const handleDecrease=()=>{
-    setNumPages(numPages-1)
-  }
-
+    setNumPages(numPages+1);
+    props.addToTotal(30); 
+  };
+  const handleDecrease=()=> {
+    if (numPages > 1) {
+      setNumPages(numPages-1);
+      props.addToTotal(-30); 
+    }
+  };
   const handleLanguagesIncrease=()=>{
-    setNumLanguages(numLanguages+1)
-  }
-  const handleLanguagesDecrease=()=>{
-    setNumLanguages(numLanguages-1)
-  }
+    setNumLanguages(numLanguages+1);
+    props.addToTotal(30); 
+  };
 
+  const handleLanguagesDecrease =()=>{
+    if (numLanguages > 1) {
+      setNumLanguages(numLanguages-1);
+      props.addToTotal(-30);
+    }
+  };
   return (
    
     <div className="card w-50 mt-3 mx-auto shadow-lg">
@@ -64,6 +77,7 @@ function CardComponent(props) {
  setNumLanguages={setNumLanguages}
  isAddContentShowing={isAddContentShowing}
  setIsAddContentShowing={setIsAddContentShowing}
+
 
  />
  {/* <BudgetSelection price={price}/> */}
