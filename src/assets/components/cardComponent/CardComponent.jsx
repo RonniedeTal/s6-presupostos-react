@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import './CardComponent.css';
 import AddsComponent from '../adding-component/AddsComponent';
 
@@ -10,31 +10,39 @@ function CardComponent(props) {
   const [isAddContentShowing, setIsAddContentShowing]=useState(false)
   const [numPages, setNumPages ]=useState(1)
   const [numLanguages, setNumLanguages]=useState(1)
-  // const [numPagesValue, setNumpagesValue]=useState(0)
-  // console.log(numPagesValue);
+ 
+
+  const handleCheckOnchange = (e) => {
+    const isChecked = e.target.checked;
+    setCheck(isChecked);
   
-
-  // const changingPagesValue=()=>{
-  //   setNumpagesValue(numPages*30)
-  // }
-
-  const handleCheckOnchange=(e)=>{
-   
-    const isChecked=e.target.checked;
-    setCheck(isChecked)
-    
-    const price = Number(props.priceContent);
-    if (props.handleSelectionChange){
-      props.handleSelectionChange(isChecked, price);
+    const basePrice = Number(props.priceContent);
+    const extras = (numPages - 1 + numLanguages - 1) * 30;
+    const subtotal = basePrice + extras;
+  
+    if (props.handleSelectionChange) {
+      props.handleSelectionChange(isChecked, subtotal);
     }
   };
 
-  const HandleShowing=()=>{
-    setIsAddContentShowing(!isAddContentShowing)
-  }
+  const HandleShowing = () => {
+    const getShowingValue = !isAddContentShowing;
+  
+    if (!getShowingValue && check) {
+      const extras = (numPages - 1 + numLanguages - 1) * 30;
+      props.addToTotal(-extras);
+      setNumPages(1);
+      setNumLanguages(1);
+    }
+  
+    setIsAddContentShowing(getShowingValue);
+  };
+
   const handleIncrease=()=>{
+    
     setNumPages(numPages+1);
     props.addToTotal(30); 
+    
   };
   const handleDecrease=()=> {
     if (numPages > 1) {

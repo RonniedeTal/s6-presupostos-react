@@ -12,19 +12,26 @@ function BudgetSelection(props) {
   const [total, setTotal]=useState(0);
 console.log(total);
 
+
+
   const addToTotal=(amount)=>{
     setTotal(total+amount); 
   };
+
   
+
   const handleSelectionChange=(isChecked, subTotal) => {
     if (isChecked) {
-      setTotal(total+60+subTotal); 
+      setTotal(total+subTotal); 
       
     }else{
       setTotal(total-subTotal)
     }
   };
 
+  const handleClick=()=>{
+    setTotal(0);
+  }
 
   return (
     <div className="budget-selection ">
@@ -36,6 +43,9 @@ console.log(total);
       priceContent={eachData.priceContent}
       handleSelectionChange={handleSelectionChange}
       addToTotal={addToTotal}
+      handleClick={handleClick}
+     
+     
       
      
     /> 
