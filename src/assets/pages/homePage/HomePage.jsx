@@ -17,7 +17,7 @@ function HomePage() {
 
     {/* <SearchBar /> */}
    
-    <ShowUsers />
+    {/* <ShowUsers /> */}
 
     </>
     

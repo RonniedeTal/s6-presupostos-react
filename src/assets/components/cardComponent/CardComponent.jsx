@@ -11,18 +11,22 @@ function CardComponent(props) {
   const [numPages, setNumPages ]=useState(1)
   const [numLanguages, setNumLanguages]=useState(1)
  
+console.log();
 
   const handleCheckOnchange = (e) => {
     const isChecked = e.target.checked;
     setCheck(isChecked);
+  
   
     const basePrice = Number(props.priceContent);
     const extras = (numPages - 1 + numLanguages - 1) * 30;
     const subtotal = basePrice + extras;
   
     if (props.handleSelectionChange) {
-      props.handleSelectionChange(isChecked, subtotal);
+      props.handleSelectionChange(isChecked, subtotal, props.h4Content);
     }
+    console.log(props.h4Content);
+    
   };
 
   const HandleShowing = () => {

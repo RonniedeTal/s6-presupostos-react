@@ -24,12 +24,16 @@ function UserForm(props) {
         const newUser={
             name:nameValue,
             email:emailValue,
-            telephone:telephoneValue
+            telephone:telephoneValue,
+            service:props.service.join(", ")
+
         }
         // const clone=JSON.parse(JSON.stringify(props.user))
         // clone.push(newUser)
         // props.setUser(clone)
         props.setUser([...props.user, newUser])
+        console.log(newUser);
+        
 }
   return (
     <div className='user-form container'>

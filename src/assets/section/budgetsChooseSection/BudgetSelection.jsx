@@ -2,6 +2,8 @@ import React, {  useState } from 'react';
 import './BudgetSelection.css';
 import CardComponent from '../../components/cardComponent/CardComponent';
 import dataJson from "../../../Data.json"
+import ShowUsers from '../../components/showUsers/ShowUsers';
+import UserForm from '../../components/User-form/UserForm';
 
 
 
@@ -10,8 +12,9 @@ import dataJson from "../../../Data.json"
 function BudgetSelection(props) {
   const [data, setData]=useState(dataJson)
   const [total, setTotal]=useState(0);
+  const [service, setService]=useState([])
 console.log(total);
-
+console.log(total,data);
 
 
   const addToTotal=(amount)=>{
@@ -20,12 +23,13 @@ console.log(total);
 
   
 
-  const handleSelectionChange=(isChecked, subTotal) => {
+  const handleSelectionChange=(isChecked, subTotal, serviceName) => {
     if (isChecked) {
       setTotal(total+subTotal); 
-      
+      setService([...service, serviceName])
     }else{
       setTotal(total-subTotal)
+      setService(service.filter((name) => name !== serviceName))
     }
   };
 
@@ -44,19 +48,45 @@ console.log(total);
       handleSelectionChange={handleSelectionChange}
       addToTotal={addToTotal}
       handleClick={handleClick}
+      // setSelectedService={setSelectedService}
+      // selectedService={selectedService}
+      
+     
+      
+     
+    /> 
+    
+    
+      )
+      
+      })}
+    
+    {/* {data.map((eachData)=>{
+      return (
+         <ShowUsers key={eachData.id} 
+      h4Content={eachData.service}
+      pContent={eachData.content}
+      priceContent={eachData.priceContent}
+      handleSelectionChange={handleSelectionChange}
+      addToTotal={addToTotal}
+      handleClick={handleClick}
+      // setSelectedService={setSelectedService}
+      // selectedService={selectedService}
      
      
       
      
     /> 
+    
       )
-      })}
-  
+      
+      })} */}
      
       <h4 className='total mt-5' >Total:{total}</h4> 
-    </div>
-    
+      <ShowUsers service={service} />
    
+    </div>
+     
   );
 }
 
