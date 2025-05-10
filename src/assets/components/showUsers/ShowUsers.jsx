@@ -7,6 +7,7 @@ import BudgetSelection from "../../section/budgetsChooseSection/BudgetSelection"
 function ShowUsers(props) {
   const [user, setUser] = useState(users);
   const [searchValue, setSearchValue] = useState("");
+  const [sortBy, setSortBy] = useState("");
   // const [selectedService, setSelectedService]=useState(null)
   // console.log(selectedService, setSelectedService);
 
@@ -24,12 +25,22 @@ function ShowUsers(props) {
       </div>
       <div className="fw-bold text-center mt-5">
         <h4>Budgets Running:</h4>
-        <SearchBar searchValue={searchValue} setSearchValue={setSearchValue} />
+        <SearchBar searchValue={searchValue} setSearchValue={setSearchValue} sortBy={sortBy}
+  setSortBy={setSortBy}/>
       </div>
       <div>
         {user
           .filter((eachUser) => {
             return eachUser.name.startsWith(searchValue);
+          })
+          .sort((a, b) => {
+            if (sortBy === "name") {
+              return a.name.localeCompare(b.name);
+            }
+            if (sortBy === "price") {
+              return parseFloat(a.total) - parseFloat(b.total);
+            }
+            return 0;
           })
           .map((eachUser, i) => {
             return (
@@ -60,8 +71,11 @@ function ShowUsers(props) {
             );
           })}
       </div>
+  
     </div>
+    
   );
+  
 }
 
 export default ShowUsers;
