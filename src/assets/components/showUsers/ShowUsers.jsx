@@ -1,60 +1,67 @@
-import React, { useState } from 'react'
-import users from "../../users.json"
-import UserForm from '../User-form/UserForm'
-import SearchBar from '../searchBar-component/SearchBar'
-import CardComponent from '../cardComponent/CardComponent'
-import BudgetSelection from '../../section/budgetsChooseSection/BudgetSelection'
+import React, { useState } from "react";
+import users from "../../users.json";
+import UserForm from "../User-form/UserForm";
+import SearchBar from "../searchBar-component/SearchBar";
+import CardComponent from "../cardComponent/CardComponent";
+import BudgetSelection from "../../section/budgetsChooseSection/BudgetSelection";
 function ShowUsers(props) {
+  const [user, setUser] = useState(users);
+  const [searchValue, setSearchValue] = useState("");
+  // const [selectedService, setSelectedService]=useState(null)
+  // console.log(selectedService, setSelectedService);
 
-    const [user, setUser]=useState(users)
-    const [searchValue, setSearchValue]=useState("")
-    // const [selectedService, setSelectedService]=useState(null)
-    // console.log(selectedService, setSelectedService);
-    
-    
   return (
     <div>
+      <div>
+        <UserForm
+          user={user}
+          setUser={setUser}
+          service={props.service}
+          total={props.total}
+          numLanguages={props.numLanguages}
+          numPages={props.numPages}
+        />
+      </div>
+      <div className="fw-bold text-center mt-5">
+        <h4>Budgets Running:</h4>
+        <SearchBar searchValue={searchValue} setSearchValue={setSearchValue} />
+      </div>
+      <div>
+        {user
+          .filter((eachUser) => {
+            return eachUser.name.startsWith(searchValue);
+          })
+          .map((eachUser, i) => {
+            return (
+              <div
+                key={i}
+                className="card mt-4 mx-auto shadow p-3 mb-4 bg-body rounded"
+                style={{ maxWidth: "700px", fontSize: "0.9rem" }}
+              >
+                <div className="row g-3 align-items-center">
+                  <div className="col-md-4">
+                    <h5 className="mb-1">{eachUser.name}</h5>
 
-        <div>
-            { user
-            .filter((eachUser)=>{
-             return eachUser.name.startsWith(searchValue)
-            })
-            .map((eachUser, i)=>{
-             return(
-                 <div key={i}>
-                 <p>{eachUser.name}</p>
-                 
-                 <p>{eachUser.email}</p>
-                 <p>{eachUser.telephone}</p>
-                 <p>{props.h4Content}</p>
-                 <p>{eachUser.totalPrice}</p>
-                 <p>Services: {eachUser.service}</p>
-                 <p>total: {eachUser.total}</p>
-                 </div>
-                 
-             )
-             
-             
-             })}
-             
-        </div>
-
-        
-        <SearchBar searchValue={searchValue} setSearchValue={setSearchValue}/>
-      <UserForm  
-      user={user} 
-      setUser={setUser}
-      service={props.service}
-      total={props.total}
-      
-      
-      
-      />
-      
-    
+                    <p className="mb-1">{eachUser.email}</p>
+                    <p className="mb-1">{eachUser.telephone}</p>
+                  </div>
+                  <div className="col-md-5">
+                    <p>{props.h4Content}</p>
+                    <p>{eachUser.totalPrice}</p>
+                    <h6 className="fw-bold">Services: {eachUser.service}</h6>
+                  </div>
+                  <div className="col-md-3 text-end">
+                    {/* <p>languages: {eachUser.numLanguages}</p> */}
+                    <h6 className="fw-bold">Total:</h6>
+                    <p className="fs-4 fw-bold text-dark"> {eachUser.total}</p>
+                  </div>
+                </div>
+              </div>
+            );
+          })}
+      </div>
     </div>
-  )
+  );
 }
 
-export default ShowUsers
+export default ShowUsers;

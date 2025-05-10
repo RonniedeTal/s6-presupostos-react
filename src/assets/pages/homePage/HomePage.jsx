@@ -1,27 +1,20 @@
-import React from 'react'
-import './HomePage.css'
+import React from "react";
+import "./HomePage.css";
 
-import HeaderSection from '../../section/HeaderSection'
-import BudgetSelection from '../../section/budgetsChooseSection/BudgetSelection'
-import UserForm from '../../components/User-form/UserForm'
-import ShowUsers from '../../components/showUsers/ShowUsers'
-import SearchBar from '../../components/searchBar-component/SearchBar'
+import HeaderSection from "../../section/HeaderSection";
+import BudgetSelection from "../../section/budgetsChooseSection/BudgetSelection";
+import UserForm from "../../components/User-form/UserForm";
+import ShowUsers from "../../components/showUsers/ShowUsers";
+import SearchBar from "../../components/searchBar-component/SearchBar";
 
 function HomePage() {
   return (
     <>
-    <HeaderSection />
-   
+      <HeaderSection />
 
-    <BudgetSelection />
-
-    {/* <SearchBar /> */}
-   
-    {/* <ShowUsers /> */}
-
+      <BudgetSelection />
     </>
-    
-  )
+  );
 }
 
-export default HomePage
+export default HomePage;
