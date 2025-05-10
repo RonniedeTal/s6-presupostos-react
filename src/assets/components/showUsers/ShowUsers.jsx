@@ -30,6 +30,7 @@ function ShowUsers(props) {
                  <p>{props.h4Content}</p>
                  <p>{eachUser.totalPrice}</p>
                  <p>Services: {eachUser.service}</p>
+                 <p>total: {eachUser.total}</p>
                  </div>
                  
              )
@@ -45,6 +46,7 @@ function ShowUsers(props) {
       user={user} 
       setUser={setUser}
       service={props.service}
+      total={props.total}
       
       
       

@@ -25,7 +25,8 @@ function UserForm(props) {
             name:nameValue,
             email:emailValue,
             telephone:telephoneValue,
-            service:props.service.join(", ")
+            service:props.service.join(", "),
+            total:props.total
 
         }
         // const clone=JSON.parse(JSON.stringify(props.user))

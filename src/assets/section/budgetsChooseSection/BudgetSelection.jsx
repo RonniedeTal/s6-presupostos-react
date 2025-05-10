@@ -83,7 +83,7 @@ console.log(total,data);
       })} */}
      
       <h4 className='total mt-5' >Total:{total}</h4> 
-      <ShowUsers service={service} />
+      <ShowUsers service={service} total={total}/>
    
     </div>
      
